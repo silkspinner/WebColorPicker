@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WebColorPicker</string>
+    <string name="notesTextView">Adjust the sliders to select from all 216 possible \"web friendly\" colors. WF colors each have their RGB components with values of 0%, 20%, 40%, 60%, 80% or 100%. These colors can be displayed without dithering on even the oldest computers.</string>
+</resources>
