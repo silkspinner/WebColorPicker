@@ -111,15 +111,18 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         {
             case R.id.redSeekBar:
                 redValue = seekValue;
-                redPercentTextView.setText(Integer.toString(redValue * 20) + "%");
+                //redPercentTextView.setText(Integer.toString(redValue * 20) + "%");
+                updateDisplay();
                 break;
             case R.id.greenSeekBar:
                 greenValue = seekValue;
-                greenPercentTextView.setText(Integer.toString(greenValue * 20) + "%");
+                //greenPercentTextView.setText(Integer.toString(greenValue * 20) + "%");
+                updateDisplay();
                 break;
             case R.id.blueSeekBar:
                 blueValue = seekValue;
-                bluePercentTextView.setText(Integer.toString(blueValue * 20) + "%");
+                //bluePercentTextView.setText(Integer.toString(blueValue * 20) + "%");
+                updateDisplay();
                 break;
         }
     }
