@@ -5,4 +5,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="webColorPicker" parent="AppTheme" >
+        <item name="android:colorBackground">@color/background_material_light</item>
+    </style>
+
 </resources>
