@@ -1,13 +1,20 @@
 package com.nimsdev.webcolorpicker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
 
@@ -58,6 +65,40 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         blueValue = 1;
 
         updateDisplay();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        //handle item events
+        switch (item.getItemId()) {
+
+            case R.id.help:
+                startActivity(new Intent(this, HelpActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void displaySettings(View view) {
+        //start settings activity
+        startActivity( new Intent(this, SettingsActivity.class));
+    }
+
+    public void readSettings(View view) {
+
+        //read the value (stored in strings.xml)
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String userName = prefs.getString("example_text", "Joe Smith");
+
+        Toast.makeText(this, userName, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -135,5 +176,9 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         updateDisplay();
+    }
+
+    public void displaySettings(MenuItem item) {
+        startActivity( new Intent(this, SettingsActivity.class));
     }
 }
