@@ -13,9 +13,4 @@ public class HelpActivity extends Activity {
         setContentView(R.layout.activity_help);
     }
 
-    public void displaySettings(View view) {
-        //start settings activity
-        startActivity( new Intent(this, SettingsActivity.class));
-
-    }
 }

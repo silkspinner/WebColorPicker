@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/color_percentage_entries"
+        android:entryValues="@array/color_percentage_entry_values"
+        android:key="list_preference_red"
+        android:title="Default Red Percentage" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/color_percentage_entries"
+        android:entryValues="@array/color_percentage_entry_values"
+        android:key="list_preference_green"
+        android:title="Default Green Percentage" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/color_percentage_entries"
+        android:entryValues="@array/color_percentage_entry_values"
+        android:key="list_preference_blue"
+        android:title="Default Blue Percentage" />
+</PreferenceScreen>
+

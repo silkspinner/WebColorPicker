@@ -33,17 +33,29 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     private String[] hexVals = {"00", "33", "66", "99", "CC", "FF"};
 
     // seekbar values
-    private int redValue;
-    private int greenValue;
-    private int blueValue;
+    private int redValue = 0;
+    private int greenValue = 0;
+    private int blueValue = 0;
+
+    // seekbar default values
+    private int redDefaultValue = 3;
+    private int greenDefaultValue = 3;
+    private int blueDefaultValue = 3;
+
     //define the shared pref object
     private SharedPreferences savedValues;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // set the default values for the preferences
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         //inflate widgets
         redSeekbar = (SeekBar) findViewById(R.id.redSeekBar);
         greenSeekbar = (SeekBar) findViewById(R.id.greenSeekBar);
@@ -82,23 +94,27 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
             case R.id.help:
                 startActivity(new Intent(this, HelpActivity.class));
                 return true;
+            case R.id.settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void displaySettings(View view) {
-        //start settings activity
-        startActivity( new Intent(this, SettingsActivity.class));
-    }
+    public void resetDefaultValues(View view) {
 
-    public void readSettings(View view) {
+        //readSettings(view);
 
-        //read the value (stored in strings.xml)
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String userName = prefs.getString("example_text", "Joe Smith");
+        redValue = redDefaultValue;
+        greenValue = greenDefaultValue;
+        blueValue = blueDefaultValue;
 
-        Toast.makeText(this, userName, Toast.LENGTH_LONG).show();
+        redSeekbar.setProgress(redValue);
+        greenSeekbar.setProgress(greenValue);
+        blueSeekbar.setProgress(blueValue);
+
+        updateDisplay();
     }
 
     @Override
@@ -116,9 +132,14 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     @Override
     public void onResume(){
 
-        //get the instance vars
-
         super.onResume();
+
+        // set default values
+        redDefaultValue = Integer.parseInt(prefs.getString("list_preference_red", "0"));
+        greenDefaultValue = Integer.parseInt(prefs.getString("list_preference_green", "0"));
+        blueDefaultValue =  Integer.parseInt(prefs.getString("list_preference_blue", "0"));
+
+        // set seekbars to saved values
         redValue = savedValues.getInt("redValue", 0 );
         greenValue = savedValues.getInt("greenValue", 0);
         blueValue = savedValues.getInt("blueValue", 0);
@@ -178,7 +199,4 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         updateDisplay();
     }
 
-    public void displaySettings(MenuItem item) {
-        startActivity( new Intent(this, SettingsActivity.class));
-    }
 }

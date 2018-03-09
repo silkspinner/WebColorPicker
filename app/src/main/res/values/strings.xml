@@ -61,6 +61,24 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="color_percentage_entries">
+        <item>0%</item>
+        <item>20%</item>
+        <item>40%</item>
+        <item>60%</item>
+        <item>80%</item>
+        <item>100%</item>
+    </string-array>
+
+    <string-array name="color_percentage_entry_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
